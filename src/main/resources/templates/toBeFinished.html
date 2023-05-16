@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>拼客后台管理</title>
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/bootstrap-3.4.1-dist/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-3.4.1-dist/css/bootstrap.min.css}">
+    <link th:href="@{/ooo/css/style.css}" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">
+        .setsidebg{
+            background: url("http://pic.616pic.com/bg_w1180/00/01/31/fMe4mGEbpr.jpg!/fw/880");
+        }
+        .setbgnodisplay{
+            background-color:rgba(0,0,0,0);
+        }
+        .setmainbg{
+            background-size: 200% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://pic.616pic.com/bg_w1180/00/00/76/Oet6WBYtwc.jpg!/fw/1120");
+        }
+    </style>
+</head>
+
+<body>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">完成用户请求</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="itemPersonName" class="col-sm-3 control-label">项目发起人</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemPersonName"></p>
+                            <span id="msgSpan1" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemCreationTime" class="col-sm-3 control-label">发起时间</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemCreationTime"></p>
+                            <span id="msgSpan2" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemEndTime" class="col-sm-3 control-label">终止时间</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemEndTime"></p>
+                            <span id="msgSpan3" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemType" class="col-sm-3 control-label">项目类型</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemType"></p>
+                            <span id="msgSpan4" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemRequirement" class="col-sm-3 control-label">具体要求</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemRequirement"></p>
+                            <span id="msgSpan5" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemContactNum" class="col-sm-3 control-label">联系人</label>
+                        <div class="col-sm-9">
+                            <p class="form-control-static" id="itemContactNum"></p>
+                            <span id="msgSpan7" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemUpload" class="col-sm-3 control-label">上传文件</label>
+                        <div class="col-sm-9">
+                            <form></form>
+                            <form method="post" enctype="multipart/form-data" th:action="@{/item/upLoadWork}" id="fileForm">
+                                <input type="hidden" name="itemToUploadId" id="uploadItemId"/>
+                                <input type="file" name="multipartFile" id="itemUpload"/>
+                                <input type="submit" hidden="hidden" name="提交" />
+                            </form>
+
+                            <span id="msgSpan8" class="help-block"></span>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-success" id="finishItem">完成工作</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div th:include="common::sideBar"></div>
+    <div class="main setmainbg">
+        <nav class="navbar navbar-expand navbar-light">
+            <!--css冲突，临时排版-->
+            <div class="col-9"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                            <span class="text-dark"><span style="color: whitesmoke">欢迎&nbsp;&nbsp;[[${session.theAdmin.realName}]]&nbsp;&nbsp;回来</span></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}">退出登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <div class="recnt">
+                    <div class="container">
+                        <div class="col-md-9 rec-left" id="itemsToBeFinished">
+                            <!--刷新任务-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var uploadMsg='[[${uploadMsg}]]';
+        if(uploadMsg!=''){
+            alert(uploadMsg);
+        }
+        //更新我的任务栏
+        $.ajax({
+            url: "/item/toBeFinished/" + [[${session.theAdmin.adminId}]],
+            data: "",
+            type: "GET",
+            success: function (result) {
+                $.each(result, function (index, item) {
+                    var outerDiv = $("<div class='air'></div>");
+                    var li1 = $("<li class=\"ic-on\"></li>").append($("<i></i>").text(index + 1));
+                    var li2 = $("<li class=\"wb-dis\"></li>")
+                        .append($("<h4></h4>").text(item.contactName))
+                        .append($("<h5></h5>").text(item.contactNumber));
+                    var li3 = $("<li class=\"dr-co\"></li>").append($("<p></p>").text(item.itemType));
+                    var li4 = $("<li class=\"sa-pn\"></li>").append($("<p></p>").append($("<i class=\"bung\"> </i>")).append(item.formattedEndTime));
+                    var li5 = $("<li class=\"dolla\"></li>").append($("<p></p>"));
+                    var but = $("<button type=\"button\" class=\"btn btn-success\">完成</button>");
+                    var li6 = $("<li class=\"b-tn\"></li>").append($("<div class=\"apply_btn\"></div>").append(but.attr("uploadId", item.itemId)));
+                    outerDiv.append(li1).append(li2).append(li3).append(li4).append(li5).append(li6);
+                    $("#itemsToBeFinished").append(outerDiv).append($("<br/>"));
+                });
+            }
+        });
+
+        $(document).on("click", ".btn.btn-success", function () {
+            $("#uploadItemId").val($(this).attr("uploadid"));
+            $.ajax({
+                url: "/item/getItemById",
+                data: "id="+$("#uploadItemId").val(),
+                type: "GET",
+                success: function (result) {
+                    $("#itemPersonName").text(result.contactName);
+                    $("#itemCreationTime").text(result.createTime);
+                    $("#itemEndTime").text(result.endTime);
+                    $("#itemType").text(result.itemType);
+                    $("#itemRequirement").text(result.requirement);
+                    $("#itemContactNum").text(result.contactNumber);
+                }
+            });
+            $("#uploadModal").modal("show");
+        });
+        $("#finishItem").click(function (){
+            if($("#itemUpload")[0].files[0] == undefined){
+                alert("你未选择上传的文件");
+                location.reload();
+            }else if($("#itemUpload")[0].files[0].size>[[${maxSize}]]) {
+                alert("不能上传超过"+([[${maxSize}]]/1024/1024)+"MB的文件");
+            }else {
+                $("#fileForm").submit();
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

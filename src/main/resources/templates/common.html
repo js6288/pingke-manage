@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-light navbar-bg" th:fragment="topBar">
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav navbar-align">
+            <li class="nav-item dropdown">
+                <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                    <span class="text-dark">欢迎[[${session.theAdmin.realName}]]回来</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/logout}">退出登录</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav id="sidebar" class="sidebar" th:fragment="sideBar">
+    <div class="sidebar-content js-simplebar setsidebg">
+        <a class="sidebar-brand" style="font-size: 30px" th:href="@{/toIndex}">
+            <span class="align-middle">后台管理系统</span>
+        </a>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">
+                任务处理
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/admin/toBeSolved/1}">
+                    <i class="align-middle" data-feather="credit-card"></i>
+                    <span class="align-middle">待处理事项</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/item/toBeFinished}">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">未完成</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a th:href="@{/admin/finished/}+${session.theAdmin.adminId}" class="sidebar-link">
+                    <i class="align-middle" data-feather="check-circle"></i> <span class="align-middle">已完成</span>
+                </a>
+            </li>
+
+
+            <li class="sidebar-header">
+                平台管理
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" th:href="@{/ads/adsManage}">
+                    <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">广告展示</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a th:href="@{/toRollAd}" class="sidebar-link">
+                    <i class="align-middle" data-feather="list"></i> <span class="align-middle">首页轮播</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="sidebar-cta">
+            <div class="sidebar-cta-content">
+                <strong class="d-inline-block mb-2">今日语录</strong>
+                <div class="mb-3 text-sm">
+                    每当我找到成功的钥匙，就发现有人把锁芯给换了。
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

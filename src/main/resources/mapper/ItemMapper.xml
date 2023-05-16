@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manage.mapper.ItemMapper">
+  <select id="getItemsToBeFinished" resultType="manage.pojo.Item">
+    SELECT * FROM item WHERE admin_id=#{adminId} AND item_status='toBeFinished' ORDER BY end_time ASC
+  </select>
+  <select id="getFinishedItemsByAdminId" resultType="manage.pojo.Item">
+    SELECT * FROM item WHERE admin_id=#{adminId} AND item_status='finished' ORDER BY finished_time DESC
+  </select>
+  <update id="refuseItem">
+    UPDATE item SET item_status='refused',refuse_message=#{refuseReason},admin_id=#{adminId} WHERE item_id=#{itemId}
+  </update>
+  <update id="setItemToBeFinished">
+    UPDATE item SET item_status='toBeFinished',admin_id=#{adminId} WHERE item_id=#{itemId}
+  </update>
+
+
+  <resultMap id="BaseResultMap" type="manage.pojo.Item">
+    <id column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="finished_time" jdbcType="TIMESTAMP" property="finishedTime" />
+    <result column="item_type" jdbcType="VARCHAR" property="itemType" />
+    <result column="requirement" jdbcType="VARCHAR" property="requirement" />
+    <result column="refuse_message" jdbcType="VARCHAR" property="refuseMessage" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_number" jdbcType="VARCHAR" property="contactNumber" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="item_status" jdbcType="VARCHAR" property="itemStatus" />
+    <result column="upload_address" jdbcType="VARCHAR" property="uploadAddress" />
+    <result column="download_address" jdbcType="VARCHAR" property="downloadAddress" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    item_id, user_id, create_time, end_time, finished_time, item_type, requirement, refuse_message, 
+    contact_name, contact_number, admin_id, item_status, upload_address, download_address
+  </sql>
+  <select id="selectByExample" parameterType="manage.pojo.ItemExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="manage.pojo.ItemExample">
+    delete from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="manage.pojo.Item">
+    insert into item (item_id, user_id, create_time, 
+      end_time, finished_time, item_type, 
+      requirement, refuse_message, contact_name, 
+      contact_number, admin_id, item_status, 
+      upload_address, download_address)
+    values (#{itemId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=DATE}, #{finishedTime,jdbcType=TIMESTAMP}, #{itemType,jdbcType=VARCHAR}, 
+      #{requirement,jdbcType=VARCHAR}, #{refuseMessage,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactNumber,jdbcType=VARCHAR}, #{adminId,jdbcType=INTEGER}, #{itemStatus,jdbcType=VARCHAR}, 
+      #{uploadAddress,jdbcType=VARCHAR}, #{downloadAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="manage.pojo.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="finishedTime != null">
+        finished_time,
+      </if>
+      <if test="itemType != null">
+        item_type,
+      </if>
+      <if test="requirement != null">
+        requirement,
+      </if>
+      <if test="refuseMessage != null">
+        refuse_message,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="contactNumber != null">
+        contact_number,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="itemStatus != null">
+        item_status,
+      </if>
+      <if test="uploadAddress != null">
+        upload_address,
+      </if>
+      <if test="downloadAddress != null">
+        download_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=DATE},
+      </if>
+      <if test="finishedTime != null">
+        #{finishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemType != null">
+        #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null">
+        #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseMessage != null">
+        #{refuseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="itemStatus != null">
+        #{itemStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadAddress != null">
+        #{uploadAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadAddress != null">
+        #{downloadAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="manage.pojo.ItemExample" resultType="java.lang.Long">
+    select count(*) from item
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update item
+    <set>
+      <if test="record.itemId != null">
+        item_id = #{record.itemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=DATE},
+      </if>
+      <if test="record.finishedTime != null">
+        finished_time = #{record.finishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.itemType != null">
+        item_type = #{record.itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requirement != null">
+        requirement = #{record.requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refuseMessage != null">
+        refuse_message = #{record.refuseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null">
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactNumber != null">
+        contact_number = #{record.contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemStatus != null">
+        item_status = #{record.itemStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadAddress != null">
+        upload_address = #{record.uploadAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadAddress != null">
+        download_address = #{record.downloadAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update item
+    set item_id = #{record.itemId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=DATE},
+      finished_time = #{record.finishedTime,jdbcType=TIMESTAMP},
+      item_type = #{record.itemType,jdbcType=VARCHAR},
+      requirement = #{record.requirement,jdbcType=VARCHAR},
+      refuse_message = #{record.refuseMessage,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      contact_number = #{record.contactNumber,jdbcType=VARCHAR},
+      admin_id = #{record.adminId,jdbcType=INTEGER},
+      item_status = #{record.itemStatus,jdbcType=VARCHAR},
+      upload_address = #{record.uploadAddress,jdbcType=VARCHAR},
+      download_address = #{record.downloadAddress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="manage.pojo.Item">
+    update item
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=DATE},
+      </if>
+      <if test="finishedTime != null">
+        finished_time = #{finishedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemType != null">
+        item_type = #{itemType,jdbcType=VARCHAR},
+      </if>
+      <if test="requirement != null">
+        requirement = #{requirement,jdbcType=VARCHAR},
+      </if>
+      <if test="refuseMessage != null">
+        refuse_message = #{refuseMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null">
+        contact_number = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="itemStatus != null">
+        item_status = #{itemStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadAddress != null">
+        upload_address = #{uploadAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadAddress != null">
+        download_address = #{downloadAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="manage.pojo.Item">
+    update item
+    set user_id = #{userId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=DATE},
+      finished_time = #{finishedTime,jdbcType=TIMESTAMP},
+      item_type = #{itemType,jdbcType=VARCHAR},
+      requirement = #{requirement,jdbcType=VARCHAR},
+      refuse_message = #{refuseMessage,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_number = #{contactNumber,jdbcType=VARCHAR},
+      admin_id = #{adminId,jdbcType=INTEGER},
+      item_status = #{itemStatus,jdbcType=VARCHAR},
+      upload_address = #{uploadAddress,jdbcType=VARCHAR},
+      download_address = #{downloadAddress,jdbcType=VARCHAR}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

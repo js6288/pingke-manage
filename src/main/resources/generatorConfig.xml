@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MySQLTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 公共设置 -->
+        <commentGenerator>
+            <!-- 是否取消自动生成时的注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否取消在注释中加上时间 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 链接数据库的配置  MySQL8之前的驱动com.mysql.jdbc.Driver，新的驱动com.mysql.cj.jdbc.Driver，并且要加时区-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ordermix?useUnicode=true&amp;characterEncoding=utf-8&amp;tinyInt1isBit=false&amp;serverTimezone=UTC"
+                        userId="root" password="123">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!--控制是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="manage.pojo"
+                            targetProject="src/main/java"/>
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator targetPackage="manage.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <table tableName="rollad" domainObjectName="RollAd"></table>
+    </context>
+</generatorConfiguration>

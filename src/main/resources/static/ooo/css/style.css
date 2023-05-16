@@ -1,0 +1,1069 @@
+.air li {
+  display: inline-block;
+  vertical-align: middle;
+}
+.air ul{
+  padding:0;
+}
+.air-1 li {
+  display: inline-block;
+  vertical-align: middle;
+}
+i.drib {
+  width: 74px;
+  height: 76px;
+  background: url(../images/img-sprite.png)no-repeat -249px -56px;
+  float: left;
+  vertical-align: middle;
+}
+i.cli {
+   width: 76px;
+  height: 76px;
+  background: url(../images/img-sprite.png)no-repeat -320px -54px;
+  float: left;
+  vertical-align: middle;
+}
+i.facb {
+   width: 76px;
+  height: 76px;
+  background: url(../images/img-sprite.png)no-repeat -165px -56px;
+  float: left;
+  vertical-align: middle;
+}
+i.intre {
+  width: 76px;
+  height: 76px;
+  background: url(../images/img-sprite.png)no-repeat -84px -56px;
+  float: left;
+  vertical-align: middle;
+}
+i.wind {
+   width: 76px;
+  height: 76px;
+  background: url(../images/img-sprite.png)no-repeat -4px -56px;
+  float: left;
+  vertical-align: middle;
+}
+.recnt h4 {
+  color: #202020;
+  font-weight: 700;
+  font-size: 1.3em;
+  margin: 0;
+  vertical-align: middle;
+}
+.recnt p {
+  color: #666666;
+  font-size: 1em;
+  font-weight: 400;
+  vertical-align: middle;
+  line-height: 1.8em;
+}
+li.ic-on {
+  width: 11%;
+  vertical-align: middle;
+}
+li.wb-dis {
+  width: 26%;
+  vertical-align: middle;
+}
+li.dr-co {
+  width: 17%;
+  vertical-align: middle;
+}
+li.sa-pn {
+  width: 19%;
+  vertical-align: middle;
+}
+li.dolla {
+  width: 10%;
+  vertical-align: middle;
+}
+.air {
+  background: #f9f9f9;
+  padding: 1em;
+}
+.air-1{
+  background: #f4ffff;
+  padding: 1em;
+}
+.recnt h5 {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #202020;
+}
+.air:hover{
+  background: #42E4d8;
+color:#fff;
+}
+.air:hover li p{
+color:#fff;
+}
+.air-1:hover{
+  background: #42E4d8;
+color:#fff;
+}
+.air-1:hover li p{
+color:#fff;
+}
+
+.recnt h6 {
+  color: #202020;
+  font-size: 1.4em;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: center;
+}
+.recnt span {
+  color: #E442C2;
+  font-weight: 800;
+}
+.recnt h3 {
+  color: #202020;
+  font-size: 2.5em;
+  font-weight: 800;
+  margin: 0.5em 0 2em;
+  text-align: center;
+   text-transform: uppercase;
+}
+.recnt h3 {
+  font-size: 2em;
+}
+.air {
+  padding: 0.5em;
+}
+.air-1 {
+  padding: 0.5em;
+}
+.recnt h4 {
+  font-size: 1.2em;
+}
+.recnt h5 {
+  font-size: 1em;
+}
+.recent-right-info {
+  padding: 18em 0 0;
+}
+.recent-right {
+  min-height: 430px;
+}
+.recnt {
+  padding: 2em 0;
+}
+
+li.wb-dis {
+  width: 24%;
+}
+li.dr-co {
+  width: 15%;
+}
+li.sa-pn {
+  width: 20%;
+}
+li.dolla {
+  width: 11%;
+}
+
+@media(max-width:768px){
+.head-nav ul li{
+	display:block;
+	float:none;
+}
+.head-nav ul li a{
+	border-right:none;
+	color:#fff;
+}
+.head-nav ul{
+	position:absolute;
+	margin: 0;
+	padding: 2% 0;
+	z-index: 9999;
+	width: 100%;
+	display: none;
+	text-align: center;
+	background:#42E4d8;
+	left:0em;
+	top:9.5em;
+}
+.head-nav span.menu {
+  display: block;
+  background: none;
+  position: absolute;
+  top: 94px;
+  right: 212px;
+}
+.head-nav span.menu:before{
+	content:url(../images/menu.png);
+	color:#FFF;
+	text-align:right;
+	cursor:pointer;
+}
+.head-nav ul li a {
+	padding:0.4em 1.5em;
+	display:block;
+	font-size:0.875em;
+	font-weight:500;
+}
+ul.number li a, ul.number li span {
+  font-size: 1em;
+}
+.header-bottom {
+  padding: 1em 0 0.6em;
+}
+.banner-info h1 {
+  font-size: 1.7em;
+}
+.banner-info p {
+  font-size: 1em;
+}
+.book1 input[type="text"] {
+  font-size: 1em;
+  padding: 10px 11px;
+}
+select {
+  font-size: 1em;
+  padding: 9px;
+}
+.reservation {
+  padding: 16px 12px;
+}
+.reservation ul li.span1_of_1 {
+  width: 25.33333%;
+  margin-left: 0.5em;
+}
+.date_btn form input[type="submit"] {
+  padding: 8.5px;
+}
+.banner {
+  min-height: 370px;
+  padding: 6em 0 0;
+}
+.our h5 {
+  font-size: 1.3em;
+}
+.our h2 {
+  font-size: 1.7em;
+}
+.our-top h3 {
+  font-size: 1.2em;
+}
+.our-left {
+  padding: 2em 0em 2em;
+}
+.recnt h6 {
+  font-size: 1.3em;
+}
+.recnt h3 {
+  font-size: 1.7em;
+}
+.rec-left {
+  margin: 0 0 2em;
+}
+.recent-right {
+  width: 38%;
+  margin: 0 auto;
+}
+.what h6 {
+  font-size: 1.3em;
+}
+.what h3 {
+  font-size: 1.7em;
+}
+.what-bottom {
+  position: absolute;
+  top: 8em;
+  right: -1em;
+}
+.foo-left {
+  float: left;
+  width: 33.33%;
+}
+.logo {
+  float: left;
+  width: 21%;
+}
+.main-img {
+  float: left;
+  width: 40%;
+}
+.main-text {
+  float: right;
+  width: 60%;
+}
+.about-main h3 {
+  font-size: 1.7em;
+  padding: 0;
+}
+.main-about h4 {
+  font-size: 0.9em;
+}
+.main-text p.para, p.para1 {
+  font-size: 0.9em;
+}
+.mission h3 {
+  font-size: 1.7em;
+  padding:0;
+}
+.visson-text {
+  float: right;
+  width: 88%;
+}
+.vission-lef {
+  float: left;
+  width: 12%;
+}
+.mission-grids {
+  margin-top: 1em;
+}
+.about-main {
+  padding: 2em 0 1em;
+}
+.portfolio-top h3 {
+  font-size: 1.7em;
+}
+.small-text p {
+  font-size: 11px;
+}
+.post-date span {
+  font-size: 1.1em;
+}
+.post-date label {
+  font-size: 11px;
+}
+.blog-artical-basicinfo li {
+  width: 60px;
+  height: 60px;
+}
+ .blog-artical-info-head h2 a {
+  font-size: 0.6em;
+}
+.twitter-weights h3 {
+  font-size: 1em;
+}
+.twitter-weight-grid h4 {
+  font-size: 1.1em;
+}
+.twitter-weight-grid p {
+  font-size: 0.9em;
+}
+.blog-artical-info-text p {
+  font-size: 0.9em;
+}
+.blog-artical-info-head ul li a, .blog-artical-info-head ul li {
+  font-size: 0.9em;
+}
+.b-tag-weight ul li a {
+  padding: 0.5em 1em;
+  font-size: 0.75em;
+}
+.single-top p {
+  font-size: 0.9em;
+}
+.sucss-bottom li {
+  display: inline-block;
+  margin: 0.8em 1em 0 0;
+}
+.single-top h2 {
+  font-size: 1.3em;
+}
+.respon h5 {
+  font-size: 1.2em;
+  text-align: center;
+}
+.single-top p {
+  font-size: 0.9em;
+}
+.strator-left {
+  float: left;
+  width: 19%;
+}
+.strator-right {
+  float: right;
+  width: 80%;
+}
+.comment input[type="text"] {
+  margin-right: 0.7em;
+}
+a.reply {
+  font-size: 0.875em;
+  padding: 0.5em 1em;
+}
+.strator1 {
+  padding: 2em 1em;
+}
+.main-head-section h3 {
+  font-size: 1.7em;
+}
+.callbacks_tabs {
+  right: 0%;
+}
+.callbacks_tabs a:after {
+	height:14px;
+	width:14px;
+}
+.r-tabs .r-tabs-accordion-title .r-tabs-anchor {
+  display: inline-block;
+  padding: 10px;
+  background-color:none;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 3px;
+  float: left;
+}
+.main {
+	padding: 10em 0px;
+}
+.error-404 h1 {
+	font-size: 7em;
+}
+.error-404 p {
+	font-size: 1.1em;
+}
+.login-page {
+  padding: 3em 0;
+}
+.login-right.wow.fadeInRight {
+  padding: 0;
+  margin-top: 2em;
+}
+.team-top li {
+  float: left;
+  width: 28.3%;
+  margin: 1.1em;
+}
+.callbacks_tabs {
+  top: 150%;
+  left: 45%;
+}
+}
+/*-- responsive --*/
+@media(max-width:640px){
+ul.number li {
+  margin: 0 0.5em;
+}
+.reservation ul li.span1_of_1 {
+  width: 24.33333%;
+  margin-left: 0.5em;
+}
+.logo {
+  float: left;
+  width: 26%;
+}
+.banner-info h1 {
+  font-size: 1.5em;
+}
+.banner {
+  min-height: 350px;
+  padding: 4.5em 0 0;
+}
+.b_room {
+  width: 100%;
+}
+.reservation ul li.span1_of_3 {
+  width: 17.25%;
+  margin-left: 0.5em;
+}
+.our h2 {
+  font-size: 1.6em;
+}
+.our p {
+  font-size: 0.9em;
+}
+.our-top h3 {
+  font-size: 1.2em;
+}
+.our-left {
+  padding: 1em 0.5em 1em;
+}
+.recnt h3 {
+  font-size: 1.6em;
+}
+li.sa-pn {
+  width: 18%;
+}
+li.wb-dis {
+  width: 21%;
+}
+li.dr-co {
+  width: 17%;
+}
+li.ic-on {
+  width: 14%;
+}
+li.dolla {
+  width: 13%;
+}
+.apply_btn form input[type="submit"] {
+  padding: 7px;
+  font-size: 0.875em;
+}
+.recnt h4 {
+  font-size: 1.1em;
+}
+.recnt p {
+  font-size: 0.9em;
+}
+.what-top {
+  width: 90%;
+}
+.footer-top p {
+  font-size: 0.9em;
+}
+.footer-top h3 {
+  font-size: 1.3em;
+}
+.footer-bottom p {
+  font-size: 0.9em;
+}
+.what h3 {
+  font-size: 1.6em;
+}
+.date_btn form input[type="submit"] {
+  padding: 9px;
+}
+.banner-info p {
+  font-size: 0.9em;
+}
+.book1 input[type="text"] {
+  font-size: 0.875em;
+  padding: 10px 11px;
+}
+select {
+  font-size: 0.875em;
+  padding: 9px;
+}
+.reservation ul li.span1_of_1 {
+  width: 24.33333%;
+  margin-left: 0.1em;
+}
+.about-main h3 {
+  font-size: 1.6em;
+  padding: 0;
+}
+.main-about h4 {
+  font-size: 0.9em;
+  margin: 0 0 0.5em;
+}
+.mission h3 {
+  font-size: 1.6em;
+  padding: 0;
+}
+.visson-text p {
+  font-size: 0.9em;
+}
+.portfolio-top h3 {
+  font-size: 1.6em;
+}
+.b-tag-weight ul li a {
+  padding: 0.5em 1em;
+  font-size: 0.6em;
+}
+.blog-content {
+  margin: 0em 0 0em;
+}
+.comment input[type="text"] {
+  width: 100%;
+  margin-right: 0;
+}
+.comment textarea {
+  width: 100%;
+}
+.main-head-section h3 {
+  font-size: 1.6em;
+}
+.team-top li {
+  display: inline-block;
+  margin: 0.2em 0.2em;
+  width: 32%;
+  float: left;
+}
+.head-nav span.menu {
+  top: 94px;
+  right: 206px;
+}
+.error-404 h1 {
+	font-size: 6em;
+}
+.main {
+	padding: 7em 0px;
+}
+.callbacks_tabs {
+  top: 150%;
+  left: 44%;
+}
+}
+/*-- responsive --*/
+@media(max-width:480px){
+.head-nav span.menu {
+  top: 80px;
+  right: 200px;
+}
+.banner-info h1 {
+  font-size: 1.4em;
+}
+.reservation {
+  padding: 10px 6px;
+}
+.date_btn form input[type="submit"] {
+  font-size:0.875em
+}
+.reservation ul li {
+  float: left;
+  list-style: none;
+  width: 26%;
+}
+select {
+  font-size: 0.875em;
+  padding: 7px 2px;
+}
+.reservation ul li.span1_of_3 {
+  width: 15.25%;
+  margin-left: 0.5em;
+}
+.reservation ul li.span1_of_1 {
+  width: 28%;
+  margin-left: 0.1em;
+}
+.banner {
+  min-height: 260px;
+  padding: 4.5em 0 0;
+}
+.our h5 {
+  font-size: 1.2em;
+}
+.our h2 {
+  font-size: 1.5em;
+}
+.our-left {
+  padding: 1em 0.5em 1em;
+  width: 100%;
+  float:none;
+}
+.recnt h6 {
+  font-size: 1.2em;
+}
+.recnt h3 {
+  font-size: 1.5em;
+}
+li.ic-on {
+  width: 38%;
+}
+li.wb-dis {
+  width: 32%;
+}
+li.dr-co {
+  width: 27%;
+}
+li.sa-pn {
+  width: 40%;
+}
+li.dolla {
+  width: 27%;
+}
+.recent-right {
+  width: 70%;
+  margin: 0 auto;
+}
+.what h6 {
+  font-size: 1.2em;
+}
+.what h3 {
+  font-size: 1.5em;
+}
+.foo-left {
+  float: none;
+  width: 100%;
+}
+.footer-bottom p {
+  text-align: center;
+}
+.book1 input[type="text"] {
+  font-size: 0.875em;
+  padding: 8px 11px;
+}
+.main-img {
+  float: none;
+  width: 100%;
+}
+.main-text {
+  float: none;
+  width: 100%;
+  margin-top: 1em;
+}
+.vission-gride1 {
+  padding: 0;
+}
+.vission-lef {
+  float: left;
+  width: 13%;
+  padding: 0;
+}
+.visson-text {
+  float: right;
+  width: 87%;
+}
+.mission h3 {
+  font-size: 1.5em;
+  padding: 0;
+}
+.about-main h3 {
+  font-size: 1.5em;
+  padding: 0;
+}
+.visson-text h4 {
+  font-size: 1em;
+}
+.portfolio-top h3 {
+  font-size: 1.5em;
+}
+.blog-content-left {
+  float: none;
+  width: 100%;
+}
+.blog-content-right {
+  float: none;
+  width: 100%;
+  padding: 2em 1em;
+}
+.blog-artical-info-head h2 a {
+  font-size: 0.55em;
+}
+.single-top {
+  float: none;
+  width: 100%;
+}
+.strator {
+  text-align: center;
+}
+.strator-left {
+  float: none;
+  width: 25%;
+  margin: 0 auto;
+}
+.rep {
+  text-align: center;
+}
+.strator-right {
+  float: none;
+  width: 100%;
+}
+.strator1 {
+  margin: 1em 0 0 0em;
+  text-align: center;
+}
+.main-head-section h3 {
+  font-size: 1.5em;
+}
+.contact_left p {
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  width: 100%;
+  margin-top: 10px;
+}
+.form_details input[type="text"], .form_details textarea {
+  padding: 9px;
+  width: 90%;
+  font-size: 1em;
+}
+.form_details textarea {
+  height: 136px;
+  resize: none;
+  width: 100%;
+}
+.contact_left h4 {
+  font-size: 1.3em;
+}
+.store h4 {
+  color: #00aeef;
+  font-size: 1.3em;
+  font-weight: 600;
+}
+.company_ad h3 {
+  font-size: 1.3em;
+}
+.form_details input[type="submit"] {
+  font-size: 0.875em;
+  padding: 0.7em 1em;
+}
+.callbacks_tabs a:after {
+	height:13px;
+	width:13px;
+}
+.team-top li {
+  display: inline-block;
+  margin: 0.2em 0.2em;
+  width: 31%;
+  float: left;
+}
+.head-nav ul {
+  top: 8em;
+}
+a.b-home {
+	padding: 0.6em 2em;
+	font-size: 0.875em;
+}
+.error-404 p {
+	font-size: 1em;
+}
+.error-404 h1 {
+	font-size: 5em;
+}
+.main {
+	padding: 6em 0px;
+}
+.head-right {
+  float: right;
+  margin: 0;
+}
+.head-left {
+  float: left;
+  display: none;
+}
+.callbacks_tabs {
+  top: 100%;
+  left: 42%;
+}
+}
+/*-- responsive --*/
+@media(max-width:320px){
+.header-bottom {
+  padding: 1em 0;
+}
+.logo {
+  float: left;
+  width: 42%;
+}
+.head-nav span.menu {
+  top: 75px;
+  right: 16px;
+}
+.banner-info h1 {
+  font-size: 1.1em;
+}
+.banner-info p {
+  font-size: 0.9em;
+  line-height: 1.5em;
+  width:100%;
+}
+.reservation ul li {
+  float: left;
+  list-style: none;
+  width: 47%;
+  margin-bottom: 0.5em;
+  margin-right:2%;
+}
+.reservation ul li.span1_of_1 {
+  width: 47%;
+}
+.banner {
+  min-height: 260px;
+  padding: 4.5em 0 0;
+  background: url(../images/banner.jpg) no-repeat -186px 0px;
+  background-size: cover;
+}
+.reservation ul li.span1_of_3 {
+  width: 47%;
+  margin-left: 0.5%;
+}
+.our h5 {
+  font-size: 1.1em;
+}
+.our h2 {
+  font-size: 1.2em;
+}
+.r-tabs .r-tabs-nav .r-tabs-anchor {
+  font-size: 1em;
+  margin: 0 0 0 0.5em;
+}
+.team-top li {
+  width: 30%;
+}
+.recnt h6 {
+  font-size: 1.1em;
+}
+.recnt h3 {
+  font-size: 1.2em;
+}
+li.ic-on {
+  width: 39%;
+}
+li.wb-dis {
+  width: 50%;
+}
+li.dr-co {
+  width: 41%;
+  margin: 0.5em 0;
+}
+li.sa-pn {
+  width: 50%;
+  margin: 0.5em 0;
+}
+li.dolla {
+  width: 40%;
+}
+.recent-right {
+  width: 100%;
+  margin: 0 auto;
+    min-height: 370px;
+}
+.what h6 {
+  font-size: 1.1em;
+}
+.what h3 {
+  font-size: 1.2em;
+}
+.what-top p {
+  font-size: 0.9em;
+}
+.what-top h5 {
+  font-size: 1em;
+}
+.what-top {
+  width: 88%;
+  padding: 1em;
+}
+.what {
+  min-height: 332px;
+  padding: 1em 0;
+}
+.employs {
+  padding: 1em 0;
+}
+.about-main h3 {
+  font-size: 1.2em;
+  padding: 0;
+}
+.mission h3 {
+  font-size: 1.3em;
+  padding: 0;
+}
+.visson-text h4 {
+  font-size: 0.9em;
+  margin:0;
+}
+.data-index {
+  width: 35px;
+  height: 35px;
+  font: 300 50px/10px 'Open Sans', sans-serif;
+}
+.vission-lef {
+  float: left;
+  width: 12%;
+  padding: 0;
+}
+.visson-text {
+  float: right;
+  width: 88%;
+}
+#portfoliolist .portfolio {
+  width: 49%;
+  margin: 0 1% 2% 0;
+}
+.portfolio-top h3 {
+  font-size: 1.3em;
+}
+.post-date span {
+  font-size: 0.875em;
+}
+.blog-artical-basicinfo li {
+  width: 40px;
+  height: 40px;
+}
+.post-date label {
+  font-size: 8px;
+}
+.blog-artical-basicinfo {
+  float: left;
+  width: 18%;
+}
+.blog-artical-info {
+  float: right;
+  width: 81%;
+}
+.blog-artical-info-head h2 a {
+  font-size: 0.45em;
+}
+.blog-artical {
+  margin-bottom: 0em;
+}
+.blog-content-right {
+  float: none;
+  width: 100%;
+  padding: 2em 0em 0;
+}
+.single-top {
+  padding: 0;
+}
+.comment {
+  padding: 2em 0 0;
+}
+.sucss-bottom li {
+  font-size: 0.875em;
+}
+.single-top h2 {
+  font-size: 1.2em;
+}
+.contact_left {
+  padding: 0;
+}
+.form_details input[type="text"], .form_details textarea {
+  padding: 9px;
+  width: 100%;
+  font-size: 0.9em;
+}
+.form_details input[type="submit"]{
+	width:46%;
+}
+.company-right {
+  padding: 0;
+}
+.contact_top {
+  padding: 1em 0 1em 0;
+}
+.main {
+	padding: 4em 0px;
+}
+.error-404 h1 {
+	font-size: 7em;
+}
+a.b-home {
+	font-size: 0.8125em;
+}
+.login-left p, .login-right p {
+  font-size: 0.9em;
+}
+.login-left h3, .login-right h3 {
+  font-size: 1.1em;
+}
+.register-top-grid input[type="text"], .register-bottom-grid input[type="text"], .register-top-grid input[type="password"], .register-bottom-grid input[type="password"] {
+  font-size: 0.9em;
+}
+.register-top-grid div, .register-bottom-grid div {
+  width: 100%;
+  float: none;
+  margin: 10px 0;
+}
+.register-top-grid h3, .register-bottom-grid h3 {
+  font-size: 1.1em;
+}
+.header-right1 {
+  display: none;
+}
+.company_ad p {
+  font-size: 0.9em;
+}
+.hours {
+  padding: 0;
+}
+.foo-left {
+  padding: 0;
+}
+.footer-top li a {
+  font-size: 0.9em;
+}
+.callbacks_tabs {
+  top: 100%;
+  left: 37%;
+}
+}

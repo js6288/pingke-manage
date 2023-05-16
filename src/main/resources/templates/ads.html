@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>拼客后台管理</title>
+    <link href="../css/app.css" rel="stylesheet">
+    <script src="../js/app.js"></script>
+    <style type="text/css">
+        .setsidebg{
+            background: url("http://pic.616pic.com/bg_w1180/00/01/31/fMe4mGEbpr.jpg!/fw/880");
+        }
+        .setbgnodisplay{
+            background-color:rgba(0,0,0,0);
+        }
+        .setmainbg{
+            background-size: 200% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://pic.616pic.com/bg_w1180/00/00/76/Oet6WBYtwc.jpg!/fw/1120");
+        }
+    </style>
+</head>
+
+<body>
+<div class="modal fade" id="editAdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="adName" class="col-sm-3 control-label"><b>广告名称</b></label>
+                        <br/>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">
+                                <input style="width: 400px;font-size: 15px" type="text" id="adName"/>
+                            </p>
+                            <span id="msgSpan1" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adIntroduce" class="col-sm-3 control-label"><b>介绍词</b></label>
+                        <br/>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">
+                                <textarea cols="50" rows="5" style="font-size: 15px" id="adIntroduce"></textarea>
+                            </p>
+                            <span id="msgSpan3" class="help-block"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adSrc" class="col-sm-3 control-label"><b>广告图地址</b></label>
+                        <br/>
+                        <div class="col-sm-9">
+                            <p class="form-control-static">
+                                <input style="width: 400px;font-size: 15px" type="text" id="adSrc"/>
+                            </p>
+                            <span id="msgSpan2" class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="editAd">确认修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div th:include="common::sideBar"></div>
+    <div class="main setmainbg">
+        <nav class="navbar navbar-expand navbar-light">
+            <!--css冲突，临时排版-->
+            <div class="col-9"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                            <span class="text-dark"><span style="color: whitesmoke">欢迎&nbsp;&nbsp;[[${session.theAdmin.realName}]]&nbsp;&nbsp;回来</span></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}">退出登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+                <h1 class="h3 mb-3" style="color: whitesmoke">优秀作品展示管理</h1>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="background-color: #fff">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0"></h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row" id="adShowDiv">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //更新展示栏信息
+        $.ajax({
+            url: "/ads/getAds",
+            data: "",
+            type: "GET",
+            success: function (result) {
+                $.each(result, function (index, ad) {
+                    var div1=$("<div class=\"col-sm-6 col-md-4\"></div>");
+                    var div2=$("<div class=\"thumbnail\"></div>");
+                    var img=$("<img height=\"162\" width=\"288\"/>")
+                        .attr("src",ad.adSrc)
+                        .attr("alt","图片失踪了");
+                    var div3=$("<div class=\"caption\"></div>")
+                        .append($("<br/>"))
+                        .append($("<h4></h4>").append(ad.adName))
+                        .append($("<p></p>").append(ad.adIntroduce))
+                        .append($("<button type=\"button\" class=\"btn btn-success\">修改广告</button>").attr("adId",ad.adId));
+                    div1.append(div2.append(img).append(div3)).append($("<br/><br/><br/><br/><br/>"));
+                    $("#adShowDiv").append(div1);
+                });
+            }
+        });
+        $(document).on("click", ".btn.btn-success", function () {
+            $.ajax({
+                url: "/ads/getAdById",
+                data: "id=" + $(this).attr("adId"),
+                type: "GET",
+                success: function (result) {
+                    $("#editAd").attr("changeId", result.adId);
+                    $("#adSrc").attr("placeholder",result.adSrc);
+                    $("#adIntroduce").attr("placeholder",result.adIntroduce);
+                    $("#adName").attr("placeholder",result.adName);
+                }
+            });
+            $("#editAdModal").modal("show");
+        });
+        $(document).on("click", "#editAd", function () {
+            if($("#adName").val()==''){
+                $("#adName").val($("#adName").attr("placeholder"));
+            }
+            if($("#adIntroduce").val()==''){
+                $("#adIntroduce").val($("#adIntroduce").attr("placeholder"));
+            }
+            if($("#adSrc").val()==''){
+                $("#adSrc").val($("#adSrc").attr("placeholder"));
+            }
+            $.ajax({
+                url: "/ads/editAd",
+                data:
+                    "adId=" + $(this).attr("changeid")+
+                    "&adName=" + $("#adName").val()+
+                    "&adIntroduce=" + $("#adIntroduce").val()+
+                    "&adSrc=" + encodeURIComponent($("#adSrc").val()),
+                type: "PUT",
+                success: function () {
+                    location.reload();
+                }
+            });
+            $("#editAdModal").modal("hide");
+
+        });
+    });
+</script>
+</body>
+
+</html>

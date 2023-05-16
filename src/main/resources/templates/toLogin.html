@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    .setsidebg{
+        background: url("http://pic.616pic.com/bg_w1180/00/01/31/fMe4mGEbpr.jpg!/fw/880");
+    }
+    .setbgnodisplay{
+        background-color:rgba(0,0,0,0);
+    }
+    .setmainbg{
+        background-size: 200% auto;
+        background-repeat: no-repeat;
+        background-image: url("http://pic.616pic.com/bg_w1180/00/00/76/Oet6WBYtwc.jpg!/fw/1120");
+    }
+</style>
+<body>
+<div align="center">
+<h3>管理员登录</h3>
+    <p th:text="${msg}" style="color: red"></p>
+    <form method="post" th:action="@{/login}">
+        <p>用户名：<input type="text" name="username"/></p>
+        <p>密码：<input type="text" name="password"/></p>
+        <p><input type="submit"/></p>
+    </form>
+</div>
+</body>
+</html>

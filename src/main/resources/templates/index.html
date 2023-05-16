@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>拼客后台管理</title>
+    <link th:href="@{css/app.css}" rel="stylesheet">
+    <script th:src="@{js/app.js}"></script>
+    <style type="text/css">
+        .setsidebg{
+            background: url("http://pic.616pic.com/bg_w1180/00/01/31/fMe4mGEbpr.jpg!/fw/880");
+        }
+        .setbgnodisplay{
+            background-color:rgba(0,0,0,0);
+        }
+        .setmainbg{
+            background-size: 200% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://pic.616pic.com/bg_w1180/00/00/76/Oet6WBYtwc.jpg!/fw/1120");
+        }
+        .setborder{
+            border: white solid 2px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <div th:include="common::sideBar"></div>
+    <div class="main setmainbg">
+        <nav class="navbar navbar-expand navbar-light">
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                            <span class="text-dark"><span style="color: whitesmoke">欢迎&nbsp;&nbsp;[[${session.theAdmin.realName}]]&nbsp;&nbsp;回来</span></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}">退出登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+                <div class="row mb-2 mb-xl-3">
+                    <div class="col-auto d-none d-sm-block">
+                        <h3><strong style="color: whitesmoke">客户请求数据</strong></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-xxl-5 d-flex">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card setborder">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-4">待处理</h5>
+                                            <h1 id="data1" class="display-5 mt-1 mb-3" style="color: whitesmoke"></h1>
+                                            <div class="mb-1">
+                                                <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i> </span>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card setborder">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-4">本人已完成</h5>
+                                            <h1 id="data2" class="display-5 mt-1 mb-3" style="color: whitesmoke"></h1>
+                                            <div class="mb-1">
+                                                <span class="text-success"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i></span>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card setborder">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-4">我的任务</h5>
+                                            <h1 id="data3" class="display-5 mt-1 mb-3" style="color: whitesmoke"></h1>
+                                            <div class="mb-1">
+                                                <span class="text-success"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i></span>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card setborder">
+                                        <div class="card-body">
+                                            <h5 class="card-title mb-4">团队处理数量</h5>
+                                            <h1 id="data4" class="display-5 mt-1 mb-3" style="color: whitesmoke"></h1>
+                                            <div class="mb-1">
+                                                <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i></span>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-xxl-7">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+
+                                <h5 class="card-title mb-0">Calendar</h5>
+                            </div>
+                            <div class="card-body d-flex" style="background-color: white">
+                                <div class="align-self-center w-100">
+                                    <div class="chart">
+                                        <div id="datetimepicker-dashboard"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script>
+    $(function () {
+        // var host=window.location.protocol+"//"+window.location.host;
+        // alert(host);
+        $.ajax({
+            url: "/refreshIndex",
+            data: "adminId=" + [[${session.theAdmin.adminId}]],
+            type: "GET",
+            success: function (result) {
+                $("#data1").text(result[0]);
+                $("#data2").text(result[2]);
+                $("#data3").text(result[1]);
+                $("#data4").text(result[3]);
+            }
+        });
+
+        $('#datetimepicker-dashboard').datetimepicker({
+            inline: true,
+            sideBySide: false,
+            format: 'L'
+        });
+    });
+</script>
+
+</body>
+
+</html>

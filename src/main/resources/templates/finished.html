@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>拼客后台管理</title>
+    <link th:href="@{/css/app.css}" rel="stylesheet">
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/bootstrap-3.4.1-dist/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap-3.4.1-dist/css/bootstrap.min.css}">
+    <style type="text/css">
+        .setsidebg{
+            background: url("http://pic.616pic.com/bg_w1180/00/01/31/fMe4mGEbpr.jpg!/fw/880");
+        }
+        .setbgnodisplay{
+            background-color:rgba(0,0,0,0);
+        }
+        .setmainbg{
+            background-size: 200% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://pic.616pic.com/bg_w1180/00/00/76/Oet6WBYtwc.jpg!/fw/1120");
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <div th:include="common::sideBar"></div>
+    <div class="main setmainbg">
+        <nav class="navbar navbar-expand navbar-light">
+            <!--css冲突，临时排版-->
+            <div class="col-9"></div>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav navbar-align">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-none d-sm-inline-block" href="#" data-toggle="dropdown">
+                            <span class="text-dark"><span style="color: whitesmoke">欢迎&nbsp;&nbsp;[[${session.theAdmin.realName}]]&nbsp;&nbsp;回来</span></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/logout}">退出登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+                <h1 class="h3 mb-3" style="color: whitesmoke">我的成品</h1>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="background-color: #fff">
+                            <!-- 显示表格数据 -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="finished_item_table" class="table table-hover">
+                                        <tr>
+                                            <th><h4>#</h4></th>
+                                            <th><h4>发起人</h4></th>
+                                            <th><h4>联系电话</h4></th>
+                                            <th><h4>交付时间</h4></th>
+                                            <th><h4>作品类型</h4></th>
+                                            <th><h4>作品详细要求</h4></th>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        //更新已完成任务
+        $.ajax({
+            url: "/item/getFinishedItemsByAdminId",
+            data: "adminId="+[[${session.theAdmin.adminId}]],
+            type: "GET",
+            success: function (result) {
+                $.each(result,function (index,item){
+                    var td=$("<td></td>").append(item.itemId);
+                    var td1=$("<td></td>").append(item.contactName);
+                    var td2=$("<td></td>").append(item.contactNumber);
+                    var td3=$("<td></td>").append(item.formattedFinishedTime);
+                    var td4=$("<td></td>").append(item.itemType);
+                    var td5=$("<td></td>").append(item.requirement);
+                    var outerTr=$("<tr></tr>").append(td).append(td1).append(td2).append(td3)
+                        .append(td4).append(td5);
+                    $("#finished_item_table").append(outerTr);
+                });
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
